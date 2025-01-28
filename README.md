@@ -1,8 +1,9 @@
-# pixel sorter
+# Image to ASCII Converter
  
-A React Vite app that processes and sorts an image's pixels by color and luminosity.
+A React Vite app that converts images to ASCII art. Users can upload an image, adjust character count and inversion settings, and view the resulting ASCII art.
 
-### Check it out [here]()
+
+### Check it out [here](https://img-to-ascii-inky.vercel.app/)
 
 ## Getting Started
 

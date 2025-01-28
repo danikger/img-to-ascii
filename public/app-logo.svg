@@ -1,17 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#DBEAFE;}
-	.st1{fill:#60A5FA;}
-	.st2{fill:#1D4ED8;}
-	.st3{fill:#1E3A8A;}
-</style>
-<g>
-	<path class="st0" d="M772.5,0H227.5C101.9,0,0,101.9,0,227.5V250h1000v-22.5C1000,101.9,898.1,0,772.5,0z"/>
-	<rect x="0" y="250" class="st1" width="1000" height="250"/>
-	<rect x="0" y="500" class="st2" width="1000" height="250"/>
-	<path class="st3" d="M0,772.5C0,898.1,101.9,1000,227.5,1000h544.9c125.7,0,227.5-101.9,227.5-227.5V750H0V772.5z"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" style="background-color: black;"><style>
+      text {
+        font-family: monospace;
+        font-size: 10px;
+        fill: white;
+      }
+    </style><text x="0" y="0">-</text><text x="6" y="0">.</text><text x="12" y="0">:</text><text x="18" y="0">:</text><text x="24" y="0">-</text><text x="30" y="0">-</text><text x="36" y="0">.</text><text x="42" y="0">:</text><text x="48" y="0">-</text><text x="54" y="0">-</text><text x="0" y="6">=</text><text x="6" y="6">-</text><text x="12" y="6">#</text><text x="18" y="6">@</text><text x="24" y="6">@</text><text x="30" y="6">@</text><text x="36" y="6">@</text><text x="42" y="6">-</text><text x="48" y="6">-</text><text x="54" y="6">=</text><text x="0" y="12">*</text><text x="6" y="12">#</text><text x="12" y="12">@</text><text x="18" y="12">@</text><text x="24" y="12">@</text><text x="30" y="12">@</text><text x="36" y="12">@</text><text x="42" y="12">%</text><text x="48" y="12">*</text><text x="54" y="12">*</text><text x="0" y="18">#</text><text x="6" y="18">@</text><text x="12" y="18">@</text><text x="18" y="18">%</text><text x="24" y="18">+</text><text x="30" y="18">#</text><text x="36" y="18">@</text><text x="42" y="18">@</text><text x="48" y="18">%</text><text x="54" y="18">#</text><text x="0" y="24">*</text><text x="6" y="24">@</text><text x="12" y="24">@</text><text x="18" y="24">=</text><text x="24" y="24">%</text><text x="30" y="24">-</text><text x="36" y="24">%</text><text x="42" y="24">%</text><text x="48" y="24">#</text><text x="54" y="24">%</text><text x="0" y="30">#</text><text x="6" y="30">@</text><text x="12" y="30">@</text><text x="18" y="30">-</text><text x="24" y="30">@</text><text x="30" y="30">-</text><text x="36" y="30">%</text><text x="42" y="30">%</text><text x="48" y="30">#</text><text x="54" y="30">%</text><text x="0" y="36">#</text><text x="6" y="36">@</text><text x="12" y="36">@</text><text x="18" y="36">%</text><text x="24" y="36">#</text><text x="30" y="36">#</text><text x="36" y="36">@</text><text x="42" y="36">@</text><text x="48" y="36">%</text><text x="54" y="36">+</text><text x="0" y="42">+</text><text x="6" y="42">%</text><text x="12" y="42">@</text><text x="18" y="42">@</text><text x="24" y="42">@</text><text x="30" y="42">@</text><text x="36" y="42">@</text><text x="42" y="42">%</text><text x="48" y="42">*</text><text x="54" y="42">:</text><text x="0" y="48">+</text><text x="6" y="48">-</text><text x="12" y="48">%</text><text x="18" y="48">@</text><text x="24" y="48">@</text><text x="30" y="48">@</text><text x="36" y="48">@</text><text x="42" y="48">+</text><text x="48" y="48">-</text><text x="54" y="48">:</text><text x="0" y="54">:</text><text x="6" y="54">:</text><text x="12" y="54">:</text><text x="18" y="54">-</text><text x="24" y="54">-</text><text x="30" y="54">.</text><text x="36" y="54">:</text><text x="42" y="54">:</text><text x="48" y="54">:</text><text x="54" y="54">:</text></svg>

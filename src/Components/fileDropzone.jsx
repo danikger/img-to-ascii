@@ -19,14 +19,19 @@ export default function FileDropzone({ onFileUpload, className }) {
   })
 
   return (
-    <div {...getRootProps()} className={`flex flex-col items-center justify-center mx-auto rounded-xl border-2 border-dashed border-zinc-300 p-16 ${isDragActive ? ' bg-zinc-200' : 'bg-zinc-100'} ${className}`}>
-      <label htmlFor="file-upload" className="sr-only">Upload your image</label>
-      <input id="file-upload" {...getInputProps()} />
-      <p className="text-zinc-800 mb-1 font-medium text-center">Drag & drop your image</p>
-      <p className="text-zinc-800 text-sm">or</p>
-      <button type="button" className="mt-2 flex py-2 px-6 rounded-md text-sm font-medium text-zinc-900 bg-zinc-300 hover:bg-zinc-400">
-        Select File
-      </button>
+    <div className={`mx-auto ${className}`}>
+      <div {...getRootProps()} className={`flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 p-16 ${isDragActive ? ' bg-zinc-200' : 'bg-zinc-100'}`}>
+        <label htmlFor="file-upload" className="sr-only">Upload your image</label>
+        <input id="file-upload" {...getInputProps()} />
+        <p className="text-zinc-800 mb-1 font-medium text-center">Drag & drop your image</p>
+        <p className="text-zinc-800 text-sm">or</p>
+        <button type="button" className="mt-2 flex py-2 px-6 rounded-md text-sm font-medium text-zinc-900 bg-zinc-300 hover:bg-zinc-400">
+          Select File
+        </button>
+      </div>
+      <div className="flex-row flex justify-center text-zinc-400 mt-3 gap-y-2 text-xs font-light">
+        <span>Supported formats: png, jpeg</span>
+      </div>
     </div>
   );
 }

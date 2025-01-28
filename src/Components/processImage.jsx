@@ -1,91 +1,83 @@
-import { useEffect, useState } from 'react';
-
-// Function to process and sort pixels by color and luminosity
-const sortPixelsByColor = async (img) => {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = img.width;
-  canvas.height = img.height;
-
-  ctx.drawImage(img, 0, 0);
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const pixels = [];
-
-  // Convert pixels to an array of objects with color information
-  for (let i = 0; i < imageData.data.length; i += 4) {
-    const r = imageData.data[i];
-    const g = imageData.data[i + 1];
-    const b = imageData.data[i + 2];
-    const a = imageData.data[i + 3];
-
-    // Calculate luminosity
-    const luminosity = (r + g + b) / 3;
-
-    // Determine color group
-    let colorGroup;
-    const threshold = 3;
-    if (Math.abs(r - g) < 10 && Math.abs(g - b) < 10 && Math.abs(r - b) < 10) {
-      colorGroup = 0; // grayscale
-    } else if (r > g * threshold && r > b * threshold) {
-      colorGroup = 1; // red
-    } else if (g > r * threshold && g > b * threshold) {
-      colorGroup = 2; // green
-    } else if (b > r * threshold && b > g * threshold) {
-      colorGroup = 3; // blue
-    } else if (r > b && g > b) {
-      colorGroup = 4; // yellow
-    } else if (r > g && b > g) {
-      colorGroup = 5; // magenta
-    } else if (g > r && b > r) {
-      colorGroup = 6; // cyan
-    } else {
-      colorGroup = 7; // mixed colors
+export const processImage = async (imageFile, charCount, invert) => {
+  const loadImageToCanvas = async (file) => {
+    if (!(file instanceof File)) {
+      throw new Error("Provided input is not a valid file.");
     }
 
-    pixels.push({
-      r, g, b, a, colorGroup, luminosity
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("Failed to load image."));
+      img.src = URL.createObjectURL(file);
     });
-  }
+  };
 
-  // Sort pixels by color group first, then by luminosity
-  pixels.sort((a, b) => {
-    if (a.colorGroup !== b.colorGroup) {
-      return a.colorGroup - b.colorGroup;
-    }
-    return b.luminosity - a.luminosity;
-  });
+  try {
+    const img = await loadImageToCanvas(imageFile);
 
-  // Put sorted pixels back into imageData
-  for (let i = 0; i < pixels.length; i++) {
-    const pixel = pixels[i];
-    imageData.data[i * 4] = pixel.r;
-    imageData.data[i * 4 + 1] = pixel.g;
-    imageData.data[i * 4 + 2] = pixel.b;
-    imageData.data[i * 4 + 3] = pixel.a;
-  }
+    // const width = 100; // Adjust ASCII art width here
+    const width = charCount; // Adjust ASCII art width here
+    const aspectRatio = img.height / img.width;
+    const height = Math.round(width * aspectRatio);
 
-  ctx.putImageData(imageData, 0, 0);
-  return canvas.toDataURL();
-};
+    // Create a small canvas to get pixel data
+    const smallCanvas = document.createElement("canvas");
+    const smallContext = smallCanvas.getContext("2d");
+    smallCanvas.width = width;
+    smallCanvas.height = height;
 
-const processImage = async (imageURL) => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.src = imageURL;
+    smallContext.drawImage(img, 0, 0, width, height);
+    const imageData = smallContext.getImageData(0, 0, width, height);
 
-    img.onload = async () => {
-      try {
-        const sortedDataUrl = await sortPixelsByColor(img);
-        resolve(sortedDataUrl);
-      } catch (err) {
-        reject("Error processing the image.");
+    const asciiChars = invert === true ? " .:-=+*#%@" : "@%#*+=-:. "
+
+    // Build SVG content
+    const characterWidth = 6; // Approximate monospace character width
+    const characterHeight = 10; // Approximate monospace character height
+    const adjustedHeight = characterHeight * 0.6; // Adjust for aspect ratio (2:1)
+    const svgWidth = width * characterWidth;
+    const svgHeight = height * adjustedHeight;
+
+    let svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" style="background-color: black;">`;
+
+    svgContent += `<style>
+      text {
+        font-family: monospace;
+        font-size: 10px;
+        fill: white;
       }
-    };
+    </style>`;
 
-    img.onerror = () => {
-      reject("Failed to load the image.");
-    };
-  });
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const index = (y * width + x) * 4;
+        const r = imageData.data[index];
+        const g = imageData.data[index + 1];
+        const b = imageData.data[index + 2];
+
+        // Convert to grayscale
+        const gray = Math.round((r + g + b) / 3);
+
+        // Map grayscale to ASCII characters
+        const charIndex = Math.floor((gray / 255) * (asciiChars.length - 1));
+        const asciiChar = asciiChars[charIndex];
+
+        // Add a <text> element to the SVG
+        svgContent += `<text x="${x * characterWidth}" y="${y * adjustedHeight}">${asciiChar}</text>`;
+      }
+    }
+
+    svgContent += `</svg>`;
+
+    // Convert the SVG content to a data URL
+    const svgBlob = new Blob([svgContent], { type: "image/svg+xml" });
+    const svgUrl = URL.createObjectURL(svgBlob);
+
+    return svgUrl; // Return the SVG as a URL
+  } catch (error) {
+    console.error("Error processing image:", error.message);
+    throw error; // Propagate the error to the calling code
+  }
 };
 
 export default processImage;

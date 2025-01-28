@@ -14,7 +14,7 @@ function ImageComparison({ imageURL, sortedURL, loading }) {
       ) : (
         sortedURL && (
           <div className="sm:w-1/2">
-            <h2 className="uppercase text-zinc-800 font-bold mb-2">Sorted</h2>
+            <h2 className="uppercase text-zinc-800 font-bold mb-2">ASCII</h2>
             <img src={sortedURL} alt="sorted image" className="w-full" />
           </div>
         )
